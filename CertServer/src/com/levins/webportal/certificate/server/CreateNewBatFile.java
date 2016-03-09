@@ -60,18 +60,15 @@ public class CreateNewBatFile {
 		runBatFile(absolutePathToBatFile);
 		try {
 			// wait a few seconds to create the file
-			// TODO - try with less second
 			Thread.sleep(4000); // 1000 milliseconds is one second.
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
 
 		String currentCertificatFileDestination = moveCertFileIntoTodayFolder(userName);
-
-		String fullPathIntoCertificateFile = currentCertificatFileDestination
-				+ "\\" + userName + ".pfx";
-
-		System.out.println("FULL PATH " + fullPathIntoCertificateFile);
+		// TODO implement ftp uploder
+		String fullPathIntoCertificateFile = PATH
+				+ currentCertificatFileDestination + userName + ".pfx";
 
 		CertificateInfo newUserCert = new CertificateInfo(userName, firstName,
 				lastName, email, String.valueOf(password),
