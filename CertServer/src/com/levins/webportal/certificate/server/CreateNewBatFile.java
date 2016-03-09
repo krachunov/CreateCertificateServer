@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
+import com.levins.webportal.certificate.connection.FtpConnection;
 import com.levins.webportal.certificate.data.CertificateInfo;
 import com.levins.webportal.certificate.data.DateCreator;
 import com.levins.webportal.certificate.data.UserToken;
@@ -60,18 +61,41 @@ public class CreateNewBatFile {
 		runBatFile(absolutePathToBatFile);
 		try {
 			// wait a few seconds to create the file
-			// TODO - try with less second
 			Thread.sleep(4000); // 1000 milliseconds is one second.
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}
 
 		String currentCertificatFileDestination = moveCertFileIntoTodayFolder(userName);
+		try {
+			Thread.sleep(2000); // 1000 milliseconds is one second.
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+		// TODO implement ftp uploder
+
+		uploadIntoFTP(userName, currentCertificatFileDestination);
+
 		CertificateInfo newUserCert = new CertificateInfo(userName, firstName,
 				lastName, email, String.valueOf(password),
 				currentCertificatFileDestination, egnValue);
 
 		return newUserCert;
+	}
+
+	private void uploadIntoFTP(String userName,
+			String currentCertificatFileDestination) {
+		System.out.println("Start Ftp upload");
+		String ftpHost = "192.168.12.124";
+		Integer ftpPort = 22;
+		String ftpUser = "root";
+		String ftpPassword = "l3v1ns";
+
+		FtpConnection ftpUpload = new FtpConnection(ftpHost, ftpPort, ftpUser,
+				ftpPassword);
+		ftpUpload.uploadToFtp(PATH + currentCertificatFileDestination, userName
+				+ ".pfx");
+		System.out.println("Finish Ftp upload");
 	}
 
 	private int generatePassword() {
