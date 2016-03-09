@@ -14,6 +14,7 @@ import com.jcraft.jsch.SftpException;
  * password = l3v1ns
  */
 public class FtpConnection {
+	private static final String DESTINATION = "/srv/drupal/sites/default/files/webportal/";
 	private String host;
 	private Integer port;
 	private String user;
@@ -70,8 +71,7 @@ public class FtpConnection {
 			Channel channel = session.openChannel("sftp");
 			channel.connect();
 			ChannelSftp sftpChannel = (ChannelSftp) channel;
-			String destination = "/srv/drupal/sites/default/files/webportal/";
-			sftpChannel.put(sourcePath + fileName, destination + fileName);
+			sftpChannel.put(sourcePath + fileName, DESTINATION + fileName);
 			sftpChannel.exit();
 			session.disconnect();
 		} catch (JSchException e) {
