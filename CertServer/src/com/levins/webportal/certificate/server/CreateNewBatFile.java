@@ -67,6 +67,12 @@ public class CreateNewBatFile {
 		}
 
 		String currentCertificatFileDestination = moveCertFileIntoTodayFolder(userName);
+
+		String fullPathIntoCertificateFile = currentCertificatFileDestination
+				+ "\\" + userName + ".pfx";
+
+		System.out.println("FULL PATH " + fullPathIntoCertificateFile);
+
 		CertificateInfo newUserCert = new CertificateInfo(userName, firstName,
 				lastName, email, String.valueOf(password),
 				currentCertificatFileDestination, egnValue);
