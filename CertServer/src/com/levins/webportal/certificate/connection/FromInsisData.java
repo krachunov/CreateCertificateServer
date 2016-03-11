@@ -244,7 +244,7 @@ public class FromInsisData {
 					|| !DataValidator.validateMail(mail) || egn == null) {
 				DateCreator dateCreate = new DateCreator();
 				final String timeAndDateOfError = dateCreate
-						.createdDateAndTime();
+						.createdDate("dd_MM_yyyy':'HH:mm:");
 				String errorRecord = String.format("%s;%s;%s;%s;%s", userName,
 						name, mail, egn, timeAndDateOfError);
 				errorLog.add(errorRecord);
@@ -300,7 +300,8 @@ public class FromInsisData {
 					|| !DataValidator.validateMail(mail) || egn == null) {
 				DateCreator dateCreate = new DateCreator();
 				final String timeAndDateOfError = dateCreate
-						.createdDateAndTime();
+						.createdDate("dd_MM_yyyy':'HH:mm:");
+				;
 				String errorRecords = String.format("%s;%s;%s;%s;%s", userName,
 						name, mail, egn, timeAndDateOfError);
 				errorLog.add(errorRecords);
