@@ -45,7 +45,7 @@ public class CreateCertServer extends Thread {
 		ErrorLog log = new ErrorLog();
 		String header = "IP;Date";
 		DateCreator dateCreate = new DateCreator();
-		String connectionDate = dateCreate.createdDateAndTime();
+		String connectionDate = dateCreate.createdDate("dd_MM_yyyy':'HH:mm:");
 		String skippedUser = socket.getRemoteSocketAddress() + ";"
 				+ connectionDate;
 		log.createLog(FILE_TO_LOAD_SETTINGS, header, skippedUser);

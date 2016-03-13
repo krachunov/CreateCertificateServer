@@ -138,7 +138,8 @@ public class CreateNewBatFile {
 	public static String moveCertFileIntoTodayFolder(String certName)
 			throws IOException {
 		DateCreator dateCreate = new DateCreator();
-		String newPathLocation = PATH + dateCreate.createdDate() + "\\";
+		String newPathLocation = PATH + dateCreate.createdDate("dd_MM_yyyy")
+				+ "\\";
 		new File(newPathLocation).mkdirs();
 		String fileExtension = ".pfx";
 		String fileName = certName + fileExtension;
@@ -146,7 +147,7 @@ public class CreateNewBatFile {
 		fileToMove.renameTo(new File(newPathLocation + fileToMove.getName()));
 		fileToMove.delete();
 		System.out.println("Move option done");
-		return dateCreate.createdDate() + "\\";
+		return dateCreate.createdDate("dd_MM_yyyy") + "\\";
 	}
 
 }

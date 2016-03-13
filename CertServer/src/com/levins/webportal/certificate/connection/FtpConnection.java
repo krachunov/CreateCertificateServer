@@ -72,7 +72,6 @@ public class FtpConnection {
 			channel.connect();
 			ChannelSftp sftpChannel = (ChannelSftp) channel;
 			sftpChannel.put(sourcePath + fileName, DESTINATION + fileName);
-			System.out.println("DESTINATION "+DESTINATION + fileName);
 			sftpChannel.exit();
 			session.disconnect();
 		} catch (JSchException e) {
